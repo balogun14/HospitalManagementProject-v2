@@ -1,0 +1,46 @@
+@model System.Collections.Generic.IEnumerable<HospitalManagementProject.DTO.PatientsDto.PatientDto>
+
+@{
+    ViewBag.Title = "Patients List";
+}
+
+<h2>Patient List</h2>
+<div>
+<dl class="dl-horizontal">
+    <dd>
+        <table class="table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.GivenName
+                    </td>
+                    <td>
+                        @item.FamilyName
+                    </td>
+                    <td>
+                        @item.Sex
+                    </td>
+                    <td>
+                        <a asp-controller="Patient" asp-action="Edit"
+                           asp-route-id="@item.Id">Edit</a> |
+                        <a asp-controller="Patient" asp-action="Details"
+                           asp-route-id="@item.Id">View</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </dd>
+</dl>
+</div>
+
+<div>
+    <a asp-controller="Patient" asp-action="Create">
+        Create New Patient</a>
+</div>

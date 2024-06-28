@@ -1,0 +1,25 @@
+@model HospitalManagementProject.DTO.PatientsDto.PatientDto
+
+@{
+    ViewBag.Title = "Patient Details";
+    
+}
+
+<h1>@Model.GivenName @Model.FamilyName</h1>
+<h2>@Model.Address</h2>
+<h2>@Model.Dob.Day/@Model.Dob.Month/@Model.Dob.Year</h2>
+<h2>@Model.Email</h2>
+<h2>@Model.Sex</h2>
+<h2>@Model.MaritalStatus</h2>
+<h2>@Model.PhoneNumber</h2>
+<h3>Appointments </h3>
+@if (@Model.Appointments != null)
+{
+    foreach (var appointment in @Model.Appointments)
+    {
+        <h3>@appointment.Title</h3>
+        <h4>@appointment.AppointmentDate</h4>
+    }
+}
+<a asp-controller="Patient" asp-action="Delete"
+   asp-route-id="@Model.Id">Delete</a>

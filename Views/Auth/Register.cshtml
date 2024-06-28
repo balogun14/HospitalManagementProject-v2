@@ -1,0 +1,31 @@
+@model HospitalManagementProject.ViewModels.AuthViewModel.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="d-flex justify-content-center align-items-center">
+<form method="post" asp-action="Register">
+    <div class="mt-5 card-container">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="container">
+            <div class="log-card">
+                <p class="heading">Welcome</p>
+                <div class="input-group">
+                    <label asp-for="Email" class="text">Email</label>
+                    <input class="input" type="email" placeholder="For Ex: awwal@gmail.com" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Password" class="text">Password</label>
+                    <input class="input" type="password" placeholder="Enter Password" asp-for="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label asp-for="ConfirmPassword" class="text">Confirm Password</label>
+                    <input class="input" type="password" placeholder="Enter Password" asp-for="ConfirmPassword">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button class="btn">Sign Up</button>
+                <p class="no-account">Have an Account Already?<a class="link" asp-action="Login" asp-controller="Auth"> Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+

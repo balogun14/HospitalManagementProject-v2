@@ -1,0 +1,66 @@
+@model HospitalManagementProject.DTO.PatientsDto.CreatePatientDto
+
+@{
+    ViewBag.Title = "Create Patient";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="GivenName" class="form-label"> </label>
+        <input asp-for="GivenName" class="form-control" id="" placeholder="Balogun">
+        <span asp-validation-for="GivenName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FamilyName" class="form-label"> </label>
+        <input asp-for="FamilyName" class="form-control" id="" placeholder="Awwal">
+        <span asp-validation-for="FamilyName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="form-label"> </label>
+        <input asp-for="Address" class="form-control" id="" placeholder="51 queens street">
+        <span asp-validation-for="Address" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="form-label"> </label>
+        <input asp-for="Email" class="form-control" id="">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="form-label"> </label>
+        <input asp-for="PhoneNumber" class="form-control" id="">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="Dob" class="form-label"> </label>
+        <input type="date" class="form-control">
+        <span asp-validation-for="Dob" class="text-danger"></span>
+
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="Sex" class="form-label"> </label>
+        <select asp-for="Sex" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.Gender>()"></select>
+        <span asp-validation-for="Sex" class="text-danger"></span>
+
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="MaritalStatus" class="form-label"> </label>
+        <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.MaritalStatus>()"></select>
+        <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="BloodGroups"></label>
+        <select asp-for="BloodGroups" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.BloodGroups>()"></select>
+        <span asp-validation-for="BloodGroups" class="text-danger"></span>
+
+    </div>
+    <button  class="btn btn-primary" asp-action="Create">Submit</button>
+</form>
