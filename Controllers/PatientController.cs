@@ -43,7 +43,6 @@ namespace HospitalManagementProject.Controllers
                 Id:isExistingPatient.Id,
                 GivenName:isExistingPatient.GivenName,
                 FamilyName:isExistingPatient.FamilyName,
-                Dob:isExistingPatient.Dob,
                 Sex:isExistingPatient.Sex,
                 BloodGroups:isExistingPatient.BloodGroups,
                 MaritalStatus:isExistingPatient.MaritalStatus,

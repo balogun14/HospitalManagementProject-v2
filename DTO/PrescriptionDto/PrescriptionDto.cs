@@ -1,10 +1,14 @@
+using HospitalManagementProject.Models.EHR;
+
 namespace HospitalManagementProject.DTO.PrescriptionDto;
 
 public record class PrescriptionDto(
+    Guid Id,
     string Symptoms,
     string Diagnosis,
     string Medications,
     string Treatment,
-    Guid Doctor,
-    Guid Patient
+    DateTime DateIssued,
+    Doctor Doctor,
+    Patient Patient
 );

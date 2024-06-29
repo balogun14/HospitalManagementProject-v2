@@ -7,7 +7,8 @@
 
 <h1>@Model.GivenName @Model.FamilyName</h1>
 <h2>@Model.Address</h2>
-<h2>@Model.Dob.Day/@Model.Dob.Month/@Model.Dob.Year</h2>
+<h2>            @Model.Dob.ToShortDateString()
+</h2>
 <h2>@Model.Email</h2>
 <h2>@Model.Sex</h2>
 <h2>@Model.MaritalStatus</h2>

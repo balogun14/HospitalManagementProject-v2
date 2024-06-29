@@ -37,13 +37,6 @@
     </div>
     <br/>
     <div class="form-group">
-        <label asp-for="Dob" class="form-label"> </label>
-        <input type="date" class="form-control">
-        <span asp-validation-for="Dob" class="text-danger"></span>
-
-    </div>
-    <br/>
-    <div class="form-group">
         <label asp-for="Sex" class="form-label"> </label>
         <select asp-for="Sex" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.Gender>()"></select>
         <span asp-validation-for="Sex" class="text-danger"></span>

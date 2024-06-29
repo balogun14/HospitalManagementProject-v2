@@ -16,7 +16,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySQL(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));
 
-builder.Services.AddScoped<IDoctor, DoctorRepo>().AddScoped<IPatient, PatientRepo>().AddScoped<IPrescription, PrescriptionRepo>().AddScoped<IAppointment,AppointmentRepo>();
+builder.Services.AddScoped<IDoctor, DoctorRepo>().
+    AddScoped<IPatient, PatientRepo>().
+    AddScoped<IPrescription, PrescriptionRepo>().
+    AddScoped<IAppointment,AppointmentRepo>().
+    AddScoped<IInventory,InventoryRepo>();
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
     {

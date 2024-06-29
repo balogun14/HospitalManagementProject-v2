@@ -1,0 +1,37 @@
+@model IEnumerable<HospitalManagementProject.DTO.PrescriptionDto.PrescriptionDto>
+
+@{
+    ViewData["Title"] = "Prescriptions";
+}
+
+<h1>Prescriptions</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date Prescribed</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Patient.FirstName @item.Patient.LastName</td>
+            <td>@item.Doctor.FirstName @item.Doctor.LastName</td>
+            <td>@item.DateIssued.ToShortDateString()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

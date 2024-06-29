@@ -1,0 +1,50 @@
+@model HospitalManagementProject.DTO.DoctorsDto.DoctorDto
+
+@{
+    ViewBag.Title = "Doctor Details";
+}
+
+<h1>Patient Details</h1>
+
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            First Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Firstname
+        </dd>
+        <dt class="col-sm-2">
+            Last Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.LastName
+        </dd>
+        <dt class="col-sm-2">
+            Specialty
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Speciality
+        </dd>
+        <dt class="col-sm-2">
+            Phone Number
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PhoneNumber
+        </dd>
+    </dl>
+    <h3>Appointments </h3>
+    @if (@Model.Appointments != null)
+    {
+        foreach (var appointment in @Model.Appointments)
+        {
+            <h3>@appointment.Title</h3>
+            <h3>@appointment.Patient</h3>
+            <h4>@appointment.AppointmentDate</h4>
+        }
+    }
+    <a asp-controller="Doctor" asp-action="Delete"
+       asp-route-id="@Model.Id">Delete</a>
+</div>

@@ -9,5 +9,5 @@ public class Doctor
     public required string LastName { get; set; }
     public Specialization Specialty { get; set; }
     public string PhoneNumber { get; set; }
-    public ICollection<Appointment> Appointments { get; set; }
+    public ICollection<Appointment>? Appointments { get; set; }
 }

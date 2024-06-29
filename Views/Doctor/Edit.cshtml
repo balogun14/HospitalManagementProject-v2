@@ -1,0 +1,30 @@
+@model HospitalManagementProject.DTO.DoctorsDto.EditDoctorDto
+
+@{
+    ViewBag.Title = "Edit Doctor";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Firstname" class="form-label"> </label>
+        <input asp-for="Firstname" class="form-control" id="" placeholder="Balogun">
+        <span asp-validation-for="Firstname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="form-label"> </label>
+        <input asp-for="LastName" class="form-control" id="" placeholder="Awwal">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="form-label"> </label>
+        <input asp-for="PhoneNumber" class="form-control" id="" placeholder="51 queens street">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="Speciality"></label>
+        <select asp-for="Speciality" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.Specialization>()"></select>
+        <span asp-validation-for="Speciality" class="text-danger"></span>
+    </div>
+    <button asp-action="Edit">Edit</button>
+</form>

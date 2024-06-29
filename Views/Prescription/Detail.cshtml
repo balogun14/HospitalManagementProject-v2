@@ -1,0 +1,43 @@
+@model HospitalManagementProject.DTO.PrescriptionDto.PrescriptionDto
+
+@{
+ViewData["Title"] = "Prescriptions";
+}
+
+<h1>Prescriptions</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Medication</th>
+        <th>Treatment</th>
+        <th>Diagnosis</th>
+        <th>Symptoms</th>
+        <th>Date Prescribed</th>
+
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Model.Patient.FirstName @Model.Patient.LastName</td>
+        <td>@Model.Doctor.FirstName @Model.Doctor.LastName</td>
+        <td>@Model.Medications</td>
+        <td>@Model.Treatment</td>
+        <td>@Model.Diagnosis</td>
+        <td>@Model.Symptoms</td>
+        <td>@Model.DateIssued.ToShortDateString()</td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Detail" asp-route-id="@Model.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

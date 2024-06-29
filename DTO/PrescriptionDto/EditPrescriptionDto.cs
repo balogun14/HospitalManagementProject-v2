@@ -1,3 +1,5 @@
+using HospitalManagementProject.Models.EHR;
+
 namespace HospitalManagementProject.DTO.PrescriptionDto;
 
 public record class EditPrescriptionDto(

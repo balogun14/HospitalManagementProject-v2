@@ -11,5 +11,6 @@ public class Prescription
     public string Dosage { get; set; }
     public string Diagnosis { get; set; }
     public string Symptoms { get; set; }
+    public string Treatment { get; set; }
     public DateTime DateIssued { get; set; }
 }

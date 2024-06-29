@@ -3,18 +3,18 @@ using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 
 namespace HospitalManagementProject.Repositories.Services;
 
 public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logger) : IPatient
 {
-    private readonly ApplicationDbContext _context = context;
     private readonly ILogger<PatientRepo> _logger = logger;
 
 
     public async Task<IEnumerable<PatientDto>> GetAllAsync()
     {
-        var patient =  await _context.Patients.Include(patient => patient.Appointments)
+        var patient =  await context.Patients.Include(patient => patient.Appointments)
             .Include(patient => patient.Prescriptions).ToListAsync();
         var viewresult = patient.Select(e => new PatientDto(
             Id:e.PatientId,
@@ -35,7 +35,7 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
 
     public async Task<PatientDto> GetByIdAsync(Guid id)
     {
-        var isExistingPatient = await _context.Patients.Include(patient => patient.Prescriptions)
+        var isExistingPatient = await context.Patients.Include(patient => patient.Prescriptions)
             .Include(patient => patient.Appointments).FirstOrDefaultAsync(e => e.PatientId == id);
         if (isExistingPatient == null) return null;
         var patient = new PatientDto(
@@ -68,16 +68,14 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             Address = createEntity.Address,
             DateOfBirth = createEntity.Dob
         };
-        logger.LogCritical("Readceh");
-        await _context.Patients.AddAsync(patient);
-        Console.WriteLine("Here");
-        await _context.SaveChangesAsync();    
+        await context.Patients.AddAsync(patient);
+        await context.SaveChangesAsync();    
     }
 
     public async Task<bool> UpdateAsync(EditPatientDto editEntity)
     {
-        var rowAffected = await _context.Patients.Where(
-            x => x.PatientId == editEntity.Id).ExecuteUpdateAsync(s => s.SetProperty(e => e.FirstName, editEntity.GivenName).SetProperty(e => e.LastName, editEntity.FamilyName).SetProperty(e => e.Address, editEntity.Address).SetProperty(e=>e.MaritalStatus,editEntity.MaritalStatus).SetProperty(e=>e.DateOfBirth,editEntity.Dob).SetProperty(e=>e.Gender,editEntity.Sex));
+        var rowAffected = await context.Patients.Where(
+            x => x.PatientId == editEntity.Id).ExecuteUpdateAsync(s => s.SetProperty(e => e.FirstName, editEntity.GivenName).SetProperty(e => e.LastName, editEntity.FamilyName).SetProperty(e => e.Address, editEntity.Address).SetProperty(e=>e.MaritalStatus,editEntity.MaritalStatus).SetProperty(e=>e.Gender,editEntity.Sex));
         return rowAffected != 0;
         
     }
@@ -85,7 +83,7 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
     
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var rowAffected = await _context.Patients.Where(e => e.PatientId == id).ExecuteDeleteAsync();
+        var rowAffected = await context.Patients.Where(e => e.PatientId == id).ExecuteDeleteAsync();
         return rowAffected != 0;     
     }
 }
