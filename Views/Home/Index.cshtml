@@ -2,7 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="content">
+    <a asp-controller="Patient" asp-action="Index">
+    <div class="col-4 ">
+        <h4>Patients</h4>
+        <span>Manage Patients information,Medical history and other records </span>
+    </div>
+    </a>
+    <a asp-controller="Doctor" asp-action="Index">
+        <div class="col-4 ">
+            <h4>Doctors</h4>
+            <span>View and manage Doctor Profiles and Appointments</span>
+        </div>
+    </a>
+    <div class="col-4 ">
+        <h4>Records</h4>
+        <span>Access and Update Patients Medical Records</span>
+    </div>
+    <a asp-controller="Appointment" asp-action="Index">
+
+        <div class="col-4 ">
+            <h4>Appointments</h4>
+            <span>View and manage Appointments</span>
+
+        </div>
+    </a>
+    <a asp-controller="Prescription" asp-action="Index">
+        <div class="col-4 ">
+            <h4>Prescriptions</h4>
+
+            <span>View and manage patients Prescriptions </span>
+
+        </div>
+    </a>
+
+    <div class="col-4 ">
+        <h4>Inventory</h4>
+        <span>Track and manage medical supplies</span>
+
+    </div>
+
 </div>
+
