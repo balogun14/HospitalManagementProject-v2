@@ -60,7 +60,7 @@ public class AppointmentRepo(ApplicationDbContext context):IAppointment
     public async Task<bool> UpdateAsync(EditAppointmentDto editEntity)
     {
         var rowAffected = await context.Appointments.Where(
-            x => x.AppointmentId.ToString() == editEntity.Id.ToLower()).ExecuteUpdateAsync(s => s.SetProperty(e => e.AppointmentDate, editEntity.AppointmentTime).SetProperty(e=>e.Notes,editEntity.Notes).SetProperty(e=> e.Title,editEntity.Title));
+            x => x.AppointmentId.ToString() == editEntity.Id).ExecuteUpdateAsync(s => s.SetProperty(e => e.AppointmentDate, editEntity.AppointmentTime).SetProperty(e=>e.Notes,editEntity.Notes).SetProperty(e=> e.Title,editEntity.Title));
         return rowAffected != 0;       }
 
     public async Task<bool> DeleteAsync(Guid id)
