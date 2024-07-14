@@ -31,8 +31,8 @@ namespace HospitalManagementProject.Controllers
         public async Task<ActionResult> Create(CreatePatientDto createEntity)
         {
             if (!ModelState.IsValid) return View(createEntity);
-            await patientService.AddAsync(createEntity);
-            notifyService.Information("Patient Added Successfully");
+            var id = await patientService.AddAsync(createEntity);
+            notifyService.Information("Patient Added Successfully with id " + id);
             return RedirectToAction("Index");
         }
         // GET: PatientController/Edit/5

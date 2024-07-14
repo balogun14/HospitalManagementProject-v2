@@ -54,7 +54,7 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             );
         return patient;     }
 
-    public async Task AddAsync(CreatePatientDto createEntity)
+    public async Task<Guid> AddAsync(CreatePatientDto createEntity)
     {
         var patient = new Patient()
         {
@@ -69,7 +69,8 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             DateOfBirth = createEntity.Dob
         };
         await context.Patients.AddAsync(patient);
-        await context.SaveChangesAsync();    
+        await context.SaveChangesAsync();
+        return patient.PatientId;
     }
 
     public async Task<bool> UpdateAsync(EditPatientDto editEntity)

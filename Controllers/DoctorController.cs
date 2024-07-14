@@ -29,8 +29,8 @@ public class DoctorController(IDoctor doctorService,INotyfService notifyService)
         public async Task<ActionResult> Create(CreateDoctorDto createEntity)
         {
             if (!ModelState.IsValid) return View(createEntity);
-            await doctorService.AddAsync(createEntity);
-            notifyService.Information("Doctor Added Successfully");
+            var id = await doctorService.AddAsync(createEntity);
+            notifyService.Information("Doctor Added Successfully with Id "+ id  );
             return RedirectToAction("Index");
         }
         // GET: PatientController/Edit/5

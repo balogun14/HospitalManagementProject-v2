@@ -37,7 +37,7 @@ public class DoctorRepo(ApplicationDbContext context,ILogger<DoctorRepo> logger)
         );
         return doctor;        }
 
-    public async Task AddAsync(CreateDoctorDto createEntity)
+    public async Task<Guid> AddAsync(CreateDoctorDto createEntity)
     {
         var doctor = new Doctor()
         {
@@ -48,7 +48,9 @@ public class DoctorRepo(ApplicationDbContext context,ILogger<DoctorRepo> logger)
             Specialty = createEntity.Speciality
         };
         await context.Doctors.AddAsync(doctor);
-        await context.SaveChangesAsync();      }
+        await context.SaveChangesAsync();
+        return doctor.DoctorId;
+    }
 
     public async Task<bool> UpdateAsync(EditDoctorDto editEntity)
     {

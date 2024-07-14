@@ -3,7 +3,7 @@ using HospitalManagementProject.Models.EHR;
 namespace HospitalManagementProject.DTO.AppointmentsDto;
 
 public record class AppointmentDto(
-    Guid Id,
+    string Id,
     string Title,
     string Notes,
     DateTime AppointmentTime,

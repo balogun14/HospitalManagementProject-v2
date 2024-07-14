@@ -15,7 +15,7 @@ public class InventoryRepo:IInventory
         throw new NotImplementedException();
     }
 
-    public async Task AddAsync(CreateInventoryDto createEntity)
+    public async Task<Guid> AddAsync(CreateInventoryDto createEntity)
     {
         throw new NotImplementedException();
     }

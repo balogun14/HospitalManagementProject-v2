@@ -42,7 +42,7 @@ public class PrescriptionRepo(ApplicationDbContext context):IPrescription
         );
         return prescription;    }
 
-    public async Task AddAsync(CreatePrescriptionDto createEntity)
+    public async Task<Guid> AddAsync(CreatePrescriptionDto createEntity)
     {
         var prescription = new Prescription()
         {
@@ -57,7 +57,8 @@ public class PrescriptionRepo(ApplicationDbContext context):IPrescription
         };
         await context.Prescriptions.AddAsync(prescription);
         await context.SaveChangesAsync();
-        
+        return prescription.PrescriptionId;
+
     }
 
     public async Task<bool> UpdateAsync(EditPrescriptionDto editEntity)
