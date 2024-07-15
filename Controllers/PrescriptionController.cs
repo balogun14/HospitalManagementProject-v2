@@ -1,6 +1,4 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
-using HospitalManagementProject.DTO.DoctorsDto;
-using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.DTO.PrescriptionDto;
 using HospitalManagementProject.Repositories.Contracts;
 using Microsoft.AspNetCore.Authorization;

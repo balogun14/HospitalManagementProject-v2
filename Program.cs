@@ -1,17 +1,39 @@
-using System.Configuration;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using HospitalManagementProject.Data;
 using HospitalManagementProject.Models;
 using HospitalManagementProject.Repositories.Contracts;
 using HospitalManagementProject.Repositories.Services;
+using HospitalManagementProject.WorkerServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Quartz;
+using Quartz.Spi;
 
 var builder = WebApplication.CreateBuilder(args);
 // Console.WriteLine(Guid.NewGuid());
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+        builder.Services.AddQuartz(q =>
+        {
+            var jobKey = new JobKey("SendEmailJob");
+            q.AddJob<EmailJob>(opts => opts.WithIdentity(jobKey));
+    
+            q.AddTrigger(opts => opts
+                .ForJob(jobKey)
+                .WithIdentity("SendEmailJob-trigger")
+                .WithCronSchedule("0 * * ? * *")
+            );        });
+
+        builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+        builder.Services.AddSingleton<IJobFactory, SingletonJobFactory>();
+        builder.Services.AddSingleton<EmailScheduler>();
+        builder.Services.AddHostedService<Worker>();
+    
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySQL(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));

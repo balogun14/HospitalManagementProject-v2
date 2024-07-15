@@ -13,7 +13,7 @@ public class Patient
     public Gender Gender { get; set; }
     public BloodGroups BloodGroups { get; set; }
     public MaritalStatus MaritalStatus { get; set; }
-    public string Email { get; set; }
+    public required string Email { get; set; }
     public ICollection<Prescription>? Prescriptions { get; set; }
     public ICollection<Appointment>? Appointments { get; set; }
 }

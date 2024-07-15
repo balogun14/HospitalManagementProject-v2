@@ -1,12 +1,14 @@
 using HospitalManagementProject.Data;
 using HospitalManagementProject.DTO.AppointmentsDto;
+using HospitalManagementProject.Models;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
+using HospitalManagementProject.WorkerServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementProject.Repositories.Services;
 
-public class AppointmentRepo(ApplicationDbContext context):IAppointment
+public class AppointmentRepo(ApplicationDbContext context, EmailScheduler emailScheduler):IAppointment
 {
     public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
     {
@@ -54,6 +56,9 @@ public class AppointmentRepo(ApplicationDbContext context):IAppointment
         };
         await context.Appointments.AddAsync(appointment);
         await context.SaveChangesAsync();
+        var newAppointmentEmail = new Email(appointment.Patient.Email, "Your appointment has been created.");
+        await emailScheduler.ScheduleEmailJob(newAppointmentEmail, DateTimeOffset.Now.AddMinutes(1));
+        
         return appointment.AppointmentId;
     }
 

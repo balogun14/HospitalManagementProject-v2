@@ -3,7 +3,6 @@ using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol;
 
 namespace HospitalManagementProject.Repositories.Services;
 
@@ -66,7 +65,8 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             BloodGroups = createEntity.BloodGroups,
             MaritalStatus = createEntity.MaritalStatus,
             Address = createEntity.Address,
-            DateOfBirth = createEntity.Dob
+            DateOfBirth = createEntity.Dob,
+            Email = createEntity.Email
         };
         await context.Patients.AddAsync(patient);
         await context.SaveChangesAsync();
@@ -76,7 +76,7 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
     public async Task<bool> UpdateAsync(EditPatientDto editEntity)
     {
         var rowAffected = await context.Patients.Where(
-            x => x.PatientId == editEntity.Id).ExecuteUpdateAsync(s => s.SetProperty(e => e.FirstName, editEntity.GivenName).SetProperty(e => e.LastName, editEntity.FamilyName).SetProperty(e => e.Address, editEntity.Address).SetProperty(e=>e.MaritalStatus,editEntity.MaritalStatus).SetProperty(e=>e.Gender,editEntity.Sex));
+            x => x.PatientId == editEntity.Id).ExecuteUpdateAsync(s => s.SetProperty(e => e.FirstName, editEntity.GivenName).SetProperty(e => e.LastName, editEntity.FamilyName).SetProperty(e => e.Address, editEntity.Address).SetProperty(e=>e.MaritalStatus,editEntity.MaritalStatus).SetProperty(e=>e.Gender,editEntity.Sex).SetProperty(e=>e.Email,editEntity.Email));
         return rowAffected != 0;
         
     }
