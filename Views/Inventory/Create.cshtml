@@ -1,37 +1,27 @@
 @model HospitalManagementProject.DTO.InventoryDto.CreateInventoryDto
 
-@{
-ViewData["Title"] = "Create Inventory";
-}
+<h2>Add New Inventory Item</h2>
 
-<h1>Create</h1>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+        <div class="form-group">
+            @Html.LabelFor(m => m.ItemName)
+            @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control" })
+        </div>
 
-<h4>Inventory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div class="form-group">
-                <label asp-for="ItemName" class="control-label"></label>
-                <input asp-for="ItemName" class="form-control" />
-                <span asp-validation-for="ItemName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
-                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Quantity)
+            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ExpiryDate)
+            @Html.TextBoxFor(m => m.ExpiryDate, new { @class = "form-control", @type = "date" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+        }
     </div>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

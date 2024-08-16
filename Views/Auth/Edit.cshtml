@@ -1,20 +1,32 @@
 @model HospitalManagementProject.ViewModels.AuthViewModel.EditView
-@{
-    ViewData["Title"] = "Edit Profile";
-}
 
-<form method="post" >
-    <div class="mb-3">
-    <label asp-for="Email" class="form-label"></label>
-    <input asp-for='Email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+<h2>Edit User</h2>
+
+<div class="card">
+  <div class="card-body">
+    @using (Html.BeginForm("Edit", "Auth", FormMethod.Post))
+    {
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+      @Html.LabelFor(m => m.Email)
+      @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email" })
+      @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(m => m.Password)
+      @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+      @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(m => m.Phone)
+      @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @type = "tel" })
+      @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    }
   </div>
-  <div class="mb-3">
-    <label asp-for="Password" class="form-label"></label>
-    <input asp-for="Password"  type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-    <div class="mb-3">
-    <label asp-for="Phone" class="form-label"></label>
-    <input asp-for="Phone"  type="tel" class="form-control" id="exampleInputPassword1">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>

@@ -1,14 +1,14 @@
+using System.Globalization;
 using HospitalManagementProject.Data;
 using HospitalManagementProject.DTO.AppointmentsDto;
-using HospitalManagementProject.Models;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
-using HospitalManagementProject.WorkerServices;
+using HospitalManagementProject.Worker_Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementProject.Repositories.Services;
 
-public class AppointmentRepo(ApplicationDbContext context, EmailScheduler emailScheduler):IAppointment
+public class AppointmentRepo(ApplicationDbContext context):IAppointment
 {
     public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
     {
@@ -43,6 +43,7 @@ public class AppointmentRepo(ApplicationDbContext context, EmailScheduler emailS
 
     public async Task<Guid> AddAsync(CreateAppointmentDto createEntity)
     {
+        var sendEmail = new SendEmailService();
         var patient = await context.Patients.FirstOrDefaultAsync(patient => createEntity.PatientId.ToLower() == patient.PatientId.ToString());
         var doctor = await context.Doctors.FirstOrDefaultAsync(d => createEntity.DoctorId.ToLower() == d.DoctorId.ToString());
         var appointment = new Appointment()
@@ -56,9 +57,7 @@ public class AppointmentRepo(ApplicationDbContext context, EmailScheduler emailS
         };
         await context.Appointments.AddAsync(appointment);
         await context.SaveChangesAsync();
-        var newAppointmentEmail = new Email(appointment.Patient.Email, "Your appointment has been created.");
-        await emailScheduler.ScheduleEmailJob(newAppointmentEmail, DateTimeOffset.Now.AddMinutes(1));
-        
+        SendEmailService.SendMail(appointment.Patient.Email, "Appointment Created Successfully", $"You have an appointment with {appointment.Doctor.FirstName} {appointment.Doctor.LastName} on {appointment.AppointmentDate.ToString(CultureInfo.InvariantCulture)} days");
         return appointment.AppointmentId;
     }
 
@@ -72,4 +71,10 @@ public class AppointmentRepo(ApplicationDbContext context, EmailScheduler emailS
     {
         var rowAffected = await context.Appointments.Where(e => e.AppointmentId == id).ExecuteDeleteAsync();
         return rowAffected != 0;      }
+    
+    public async Task<List<Appointment>> GetDueAppointmentsAsync(DateTime currentDate)
+    {
+        return await context.Appointments.Where(appointment => appointment.AppointmentDate < currentDate).ToListAsync();
+    }
+    
 }

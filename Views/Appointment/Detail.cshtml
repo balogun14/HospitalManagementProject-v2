@@ -1,37 +1,27 @@
 @model HospitalManagementProject.DTO.AppointmentsDto.AppointmentDto
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 
-@{
-ViewData["Title"] = "Appointment";
-}
+<h2>Appointment Details</h2>
 
-<h1>@Model.Title
-</h1>
+<div class="card">
+    <div class="card-header">
+        @Model.Title
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Notes</dt>
+            <dd class="col-sm-9">@Model.Notes</dd>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
+            <dt class="col-sm-3">Appointment Time</dt>
+            <dd class="col-sm-9">@Model.AppointmentTime.ToString("g")</dd>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Notes</th>
-        <th>Date Prescribed</th>
+            <dt class="col-sm-3">Patient</dt>
+            <dd class="col-sm-9">@Model.Patient.FirstName @Model.Patient.LastName</dd>
 
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>@Model.Patient.FirstName @Model.Patient.LastName</td>
-        <td>@Model.Doctor.FirstName @Model.Doctor.LastName</td>
-        <td>@Model.Notes</td>
-        <td>@Model.AppointmentTime.ToShortDateString()</td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <dt class="col-sm-3">Doctor</dt>
+            <dd class="col-sm-9">@Model.Doctor.FirstName @Model.Doctor.LastName</dd>
+        </dl>
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

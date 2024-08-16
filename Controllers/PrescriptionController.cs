@@ -1,4 +1,5 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
+using HospitalManagementProject.Data;
 using HospitalManagementProject.DTO.PrescriptionDto;
 using HospitalManagementProject.Repositories.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementProject.Controllers;
 [Authorize]
-public class PrescriptionController(IPrescription prescriptionService,INotyfService notifyService) : Controller
+public class PrescriptionController(IPrescription prescriptionService,INotyfService notifyService,ApplicationDbContext _context) : Controller
 {
     // GET
     public async Task<IActionResult> Index()
@@ -21,6 +22,11 @@ public class PrescriptionController(IPrescription prescriptionService,INotyfServ
         }
         public IActionResult Create()
         {
+            var patients = _context.Patients.Select(p => new { p.PatientId, FullName = p.FirstName + " " + p.LastName }).ToList();
+            var doctors = _context.Doctors.Select(d => new { d.DoctorId, FullName = d.FirstName + " " + d.LastName }).ToList();
+
+            ViewBag.Patients = patients;
+            ViewBag.Doctors = doctors;
             return View();
         }
 

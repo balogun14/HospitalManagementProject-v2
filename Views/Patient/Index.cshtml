@@ -1,46 +1,37 @@
-@model System.Collections.Generic.IEnumerable<HospitalManagementProject.DTO.PatientsDto.PatientDto>
+@model IEnumerable<HospitalManagementProject.DTO.PatientsDto.PatientDto>
 
-@{
-    ViewBag.Title = "Patients List";
-}
+<h2>Patients</h2>
 
-<h2>Patient List</h2>
-<div>
-<dl class="dl-horizontal">
-    <dd>
-        <table class="table">
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Date of Birth</th>
                 <th>Gender</th>
-                <th></th>
+                <th>Actions</th>
             </tr>
-            @foreach (var item in Model)
+            </thead>
+            <tbody>
+            @foreach (var patient in Model)
             {
-                <tr>
-                    <td>
-                        @item.GivenName
-                    </td>
-                    <td>
-                        @item.FamilyName
-                    </td>
-                    <td>
-                        @item.Sex
-                    </td>
-                    <td>
-                        <a asp-controller="Patient" asp-action="Edit"
-                           asp-route-id="@item.Id">Edit</a> |
-                        <a asp-controller="Patient" asp-action="Details"
-                           asp-route-id="@item.Id">View</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@patient.GivenName</td>
+                <td>@patient.FamilyName</td>
+                <td>@patient.Dob.ToString("d")</td>
+                <td>@patient.Sex</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = patient.Id })" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="@Url.Action("Details", new { id = patient.Id })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Delete", new { id = patient.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
             }
+            </tbody>
         </table>
-    </dd>
-</dl>
-</div>
 
-<div>
-    <a asp-controller="Patient" asp-action="Create">
-        Create New Patient</a>
+        <a href="@Url.Action("Create")" class="btn btn-success">Add New Patient</a>
+    </div>
 </div>

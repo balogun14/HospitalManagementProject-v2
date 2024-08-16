@@ -1,50 +1,40 @@
 @model HospitalManagementProject.DTO.AppointmentsDto.EditAppointmentDto
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 
-@{
-ViewData["Title"] = "Edit Appointment";
-}
+<h2>Edit Appointment</h2>
 
-<h1>Create Appointment</h1>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+        @Html.HiddenFor(m => m.Id)
 
-<h4>Appointment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatientId" class="control-label">Patient</label>
-                <input asp-for="PatientId" class="form-control"/>
-                <span asp-validation-for="PatientId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorId" class="control-label">Doctor</label>
-                <input asp-for="DoctorId" class="form-control"/>
-                <span asp-validation-for="DoctorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control"/>
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AppointmentTime" class="control-label"></label>
-                <input asp-for="AppointmentTime" class="form-control"/>
-                <span asp-validation-for="AppointmentTime" class="text-danger"></span>
-            </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(m => m.Notes)
+            @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+        </div>
 
-            <div class="form-group">
-                <button asp-action="Create" class="btn btn-outline-primary">Create</button>
-            </div>
-        </form>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AppointmentTime)
+            @Html.TextBoxFor(m => m.AppointmentTime, new { @class = "form-control", @type = "datetime-local" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PatientId)
+            @Html.DropDownListFor(m => m.PatientId, new SelectList(ViewBag.Patients, "Id", "FullName"), "Select Patient", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.DoctorId)
+            @Html.DropDownListFor(m => m.DoctorId, new SelectList(ViewBag.Doctors, "Id", "FullName"), "Select Doctor", new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        }
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

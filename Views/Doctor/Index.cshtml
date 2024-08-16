@@ -1,50 +1,37 @@
-@model System.Collections.Generic.IEnumerable<HospitalManagementProject.DTO.DoctorsDto.DoctorDto>
+@model IEnumerable<HospitalManagementProject.DTO.DoctorsDto.DoctorDto>
 
-@{
-    ViewBag.Title = "Doctor List";
+<h2>Doctors</h2>
 
-}
-<div class="main">
-    <h2>Doctors List</h2>
-    <div>
-        <dl class="dl-horizontal">
-            <dd>
-                <table class="table">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Speciality</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>
-                            @item.Firstname
-                        </td>
-                        <td>
-                            @item.LastName
-                        </td>
-                        <td>
-                            @item.Speciality
-                        </td>
-                        <td>
-                            @item.PhoneNumber
-                        </td>
-                        <td>
-                            <a asp-controller="Doctor" asp-action="Edit"
-                               asp-route-id="@item.Id">Edit</a> |
-                            <a asp-controller="Doctor" asp-action="Detail"
-                               asp-route-id="@item.Id">View</a>
-                        </td>
-                    </tr>
-                    }
-                </table>
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-controller="Doctor" asp-action="Create">
-            Create New Doctor</a>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Specialization</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var doctor in Model)
+            {
+            <tr>
+                <td>@doctor.Firstname</td>
+                <td>@doctor.LastName</td>
+                <td>@doctor.Speciality</td>
+                <td>@doctor.PhoneNumber</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = doctor.Id })" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="@Url.Action("Details", new { id = doctor.Id })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Delete", new { id = doctor.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("Create")" class="btn btn-success">Create New Doctor</a>
     </div>
 </div>

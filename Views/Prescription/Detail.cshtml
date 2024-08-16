@@ -1,43 +1,32 @@
 @model HospitalManagementProject.DTO.PrescriptionDto.PrescriptionDto
 
-@{
-ViewData["Title"] = "Prescriptions";
-}
+<h2>Prescription Details</h2>
 
-<h1>Prescriptions</h1>
+<div class="card">
+    <div class="card-header">
+        Prescription for @Model.Patient.FirstName @Model.Patient.LastName
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Symptoms</dt>
+            <dd class="col-sm-9">@Model.Symptoms</dd>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
+            <dt class="col-sm-3">Diagnosis</dt>
+            <dd class="col-sm-9">@Model.Diagnosis</dd>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Medication</th>
-        <th>Treatment</th>
-        <th>Diagnosis</th>
-        <th>Symptoms</th>
-        <th>Date Prescribed</th>
+            <dt class="col-sm-3">Medications</dt>
+            <dd class="col-sm-9">@Model.Medications</dd>
 
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>@Model.Patient.FirstName @Model.Patient.LastName</td>
-        <td>@Model.Doctor.FirstName @Model.Doctor.LastName</td>
-        <td>@Model.Medications</td>
-        <td>@Model.Treatment</td>
-        <td>@Model.Diagnosis</td>
-        <td>@Model.Symptoms</td>
-        <td>@Model.DateIssued.ToShortDateString()</td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-            <a asp-action="Detail" asp-route-id="@Model.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <dt class="col-sm-3">Treatment</dt>
+            <dd class="col-sm-9">@Model.Treatment</dd>
+
+            <dt class="col-sm-3">Doctor</dt>
+            <dd class="col-sm-9">@Model.Doctor.FirstName @Model.Doctor.LastName</dd>
+
+            <dt class="col-sm-3">Date Issued</dt>
+            <dd class="col-sm-9">@Model.DateIssued.ToString("d")</dd>
+        </dl>
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

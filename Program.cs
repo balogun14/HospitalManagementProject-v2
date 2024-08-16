@@ -4,36 +4,13 @@ using HospitalManagementProject.Data;
 using HospitalManagementProject.Models;
 using HospitalManagementProject.Repositories.Contracts;
 using HospitalManagementProject.Repositories.Services;
-using HospitalManagementProject.WorkerServices;
+using HospitalManagementProject.Worker_Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Quartz;
-using Quartz.Spi;
 
 var builder = WebApplication.CreateBuilder(args);
-// Console.WriteLine(Guid.NewGuid());
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-
-
-        builder.Services.AddQuartz(q =>
-        {
-            var jobKey = new JobKey("SendEmailJob");
-            q.AddJob<EmailJob>(opts => opts.WithIdentity(jobKey));
-    
-            q.AddTrigger(opts => opts
-                .ForJob(jobKey)
-                .WithIdentity("SendEmailJob-trigger")
-                .WithCronSchedule("0 * * ? * *")
-            );        });
-
-        builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
-        builder.Services.AddSingleton<IJobFactory, SingletonJobFactory>();
-        builder.Services.AddSingleton<EmailScheduler>();
-        builder.Services.AddHostedService<Worker>();
-    
-
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySQL(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!));
@@ -42,7 +19,7 @@ builder.Services.AddScoped<IDoctor, DoctorRepo>().
     AddScoped<IPatient, PatientRepo>().
     AddScoped<IPrescription, PrescriptionRepo>().
     AddScoped<IAppointment,AppointmentRepo>().
-    AddScoped<IInventory,InventoryRepo>();
+    AddScoped<IInventory,InventoryRepo>().AddScoped<AppointmentRepo>().AddHostedService<Worker>();;
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
     {
@@ -93,37 +70,37 @@ app.MapControllerRoute(
 
 app.Run();
 
-async Task CreateRoles(IServiceProvider serviceProvider)
-{
-    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-
-    string[] roleNames = ["Administrator", "Doctor", "Patient"];
-
-    foreach (var roleName in roleNames)
-    {
-        var roleExist = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExist)
-        {
-            await roleManager.CreateAsync(new IdentityRole(roleName));
-        }
-    }
-
-    var adminUser = new User()
-    {
-        UserName = "admin@admin.com",
-        Email = "admin@admin.com"
-    };
-
-    const string adminPassword = "Admin@123";
-    var user = await userManager.FindByEmailAsync(adminUser.Email);
-
-    if (user == null)
-    {
-        var createAdmin = await userManager.CreateAsync(adminUser, adminPassword);
-        if (createAdmin.Succeeded)
-        {
-            await userManager.AddToRoleAsync(adminUser, "Administrator");
-        }
-    }
-}
+// async Task CreateRoles(IServiceProvider serviceProvider)
+// {
+//     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//     var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+//
+//     string[] roleNames = ["Administrator", "Patient"];
+//
+//     foreach (var roleName in roleNames)
+//     {
+//         var roleExist = await roleManager.RoleExistsAsync(roleName);
+//         if (!roleExist)
+//         {
+//             await roleManager.CreateAsync(new IdentityRole(roleName));
+//         }
+//     }
+//
+//     var adminUser = new User()
+//     {
+//         UserName = "admin@admin.com",
+//         Email = "admin@admin.com"
+//     };
+//
+//     const string adminPassword = "Admin@123";
+//     var user = await userManager.FindByEmailAsync(adminUser.Email);
+//
+//     if (user == null)
+//     {
+//         var createAdmin = await userManager.CreateAsync(adminUser, adminPassword);
+//         if (createAdmin.Succeeded)
+//         {
+//             await userManager.AddToRoleAsync(adminUser, "Administrator");
+//         }
+//     }
+// }

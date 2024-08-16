@@ -1,53 +1,42 @@
 @model HospitalManagementProject.DTO.PrescriptionDto.CreatePrescriptionDto
 
-@{
-    ViewData["Title"] = "Create Prescription";
-}
+<h2>Create Prescription</h2>
 
-<h1>Create Prescription</h1>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Symptoms)
+                @Html.TextAreaFor(m => m.Symptoms, new { @class = "form-control" })
+            </div>
 
-<h4>Prescription</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
             <div class="form-group">
-                <label asp-for="Patient" class="control-label">Patient</label>
-                <input asp-for="Patient" class="form-control" />
-                <span asp-validation-for="Patient" class="text-danger"></span>
+                @Html.LabelFor(m => m.Diagnosis)
+                @Html.TextAreaFor(m => m.Diagnosis, new { @class = "form-control" })
             </div>
+
             <div class="form-group">
-                <label asp-for="Doctor" class="control-label">Doctor</label>
-                <input asp-for="Doctor" class="form-control" />
-                <span asp-validation-for="Doctor" class="text-danger"></span>
+                @Html.LabelFor(m => m.Medications)
+                @Html.TextAreaFor(m => m.Medications, new { @class = "form-control" })
             </div>
+
             <div class="form-group">
-                <label asp-for="Medications" class="control-label"></label>
-                <input asp-for="Medications" class="form-control" />
-                <span asp-validation-for="Medications" class="text-danger"></span>
+                @Html.LabelFor(m => m.Treatment)
+                @Html.TextAreaFor(m => m.Treatment, new { @class = "form-control" })
             </div>
+
             <div class="form-group">
-                <label asp-for="Symptoms" class="control-label"></label>
-                <input asp-for="Symptoms" class="form-control" />
-                <span asp-validation-for="Symptoms" class="text-danger"></span>
+                @Html.LabelFor(m => m.Patient)
+                @Html.DropDownList("PatientId" ,new SelectList(ViewBag.Patients, "PatientId","FullName"), "Select Patient", new { @class = "form-control" })
             </div>
+
             <div class="form-group">
-                <label asp-for="Treatment" class="control-label"></label>
-                <input asp-for="Treatment" class="form-control" />
-                <span asp-validation-for="Treatment" class="text-danger"></span>
+                @Html.LabelFor(m => m.Doctor)
+                @Html.DropDownList("DoctorId", new SelectList(ViewBag.Doctors, "DoctorId", "FullName"), "Select Doctor", new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                <label asp-for="Diagnosis" class="control-label"></label>
-                <input asp-for="Diagnosis" class="form-control" />
-                <span asp-validation-for="Diagnosis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-<button asp-action="Create">Create</button>
-                </div>
-        </form>
+
+            <button type="submit" class="btn btn-primary">Create Prescription</button>
+        }
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
