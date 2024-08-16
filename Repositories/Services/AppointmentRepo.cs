@@ -72,5 +72,9 @@ public class AppointmentRepo(ApplicationDbContext context):IAppointment
         var rowAffected = await context.Appointments.Where(e => e.AppointmentId == id).ExecuteDeleteAsync();
         return rowAffected != 0;      }
     
-
+    public async Task<List<Appointment>> GetDueAppointmentsAsync(DateTime currentDate)
+    {
+        return await context.Appointments.Where(appointment => appointment.AppointmentDate < currentDate).ToListAsync();
+    }
+    
 }

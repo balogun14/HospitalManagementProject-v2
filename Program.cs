@@ -4,6 +4,7 @@ using HospitalManagementProject.Data;
 using HospitalManagementProject.Models;
 using HospitalManagementProject.Repositories.Contracts;
 using HospitalManagementProject.Repositories.Services;
+using HospitalManagementProject.Worker_Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ builder.Services.AddScoped<IDoctor, DoctorRepo>().
     AddScoped<IPatient, PatientRepo>().
     AddScoped<IPrescription, PrescriptionRepo>().
     AddScoped<IAppointment,AppointmentRepo>().
-    AddScoped<IInventory,InventoryRepo>();
+    AddScoped<IInventory,InventoryRepo>().AddScoped<AppointmentRepo>().AddHostedService<Worker>();;
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
     {
