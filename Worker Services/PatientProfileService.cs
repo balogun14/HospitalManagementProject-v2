@@ -13,8 +13,8 @@ public class PatientProfileService(IConfiguration configuration, IWebHostEnviron
     {
         using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
         {
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
-            BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
+            var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new BitmapByteQRCode(qrCodeData);
             byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(20);
 
             string fileName = $"qrcode_{patientId}.png";
