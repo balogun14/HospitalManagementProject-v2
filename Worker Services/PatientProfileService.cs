@@ -1,6 +1,5 @@
 using QRCoder;
 using System.Drawing;
-using System.Drawing.Imaging;
 
 public class PatientProfileService
 {
@@ -11,25 +10,18 @@ public class PatientProfileService
         _configuration = configuration;
     }
 
-    public string GeneratePatientProfileUrl(int patientId)
+    public string GeneratePatientProfileUrl(Guid patientId)
     {
         var baseUrl = _configuration["BaseUrl"];
-        return $"{baseUrl}/PatientDetails/{patientId}";
+        return $"{baseUrl}/PatientProfile/Profile/{patientId}";
     }
 
     public string GenerateQRCodeAsBase64(string url)
     {
-        using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-        using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q))
-        using (QRCode qrCode = new QRCode(qrCodeData))
-        {
-            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
-            using (MemoryStream ms = new MemoryStream())
-            {
-                qrCodeImage.Save(ms, ImageFormat.Png);
-                byte[] byteImage = ms.ToArray();
-                return Convert.ToBase64String(byteImage);
-            }
-        }
+        using QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+        BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
+        byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(20);
+        return Convert.ToBase64String(qrCodeAsBitmapByteArr);
     }
 }

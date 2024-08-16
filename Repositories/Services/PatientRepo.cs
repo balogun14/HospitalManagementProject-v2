@@ -1,12 +1,14 @@
+using System.Globalization;
 using HospitalManagementProject.Data;
 using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
+using HospitalManagementProject.Worker_Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementProject.Repositories.Services;
 
-public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logger) : IPatient
+public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logger,PatientProfileService _patientProfileService) : IPatient
 {
     private readonly ILogger<PatientRepo> _logger = logger;
 
@@ -69,7 +71,21 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             Email = createEntity.Email
         };
         await context.Patients.AddAsync(patient);
+        var profileUrl = _patientProfileService.GeneratePatientProfileUrl(patient.PatientId);
+        var qrCodeBase64 = _patientProfileService.GenerateQRCodeAsBase64(profileUrl);
+        var emailBody = $@"
+            <html>
+                <body>
+                    <h1>Patient Profile Created </h1>
+                    <p>View your profile: <a href='{profileUrl}'>Click here</a></p>
+                    <p>Or scan this QR code:</p>
+                    <img src='data:image/png;base64,{qrCodeBase64}' alt='QR Code' />
+                </body>
+            </html>";
+
+        SendEmailService.SendMail(patient.Email, emailBody, $"Profile Created for Patient");
         await context.SaveChangesAsync();
+        
         return patient.PatientId;
     }
 

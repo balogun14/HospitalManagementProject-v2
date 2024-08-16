@@ -19,7 +19,10 @@ builder.Services.AddScoped<IDoctor, DoctorRepo>().
     AddScoped<IPatient, PatientRepo>().
     AddScoped<IPrescription, PrescriptionRepo>().
     AddScoped<IAppointment,AppointmentRepo>().
-    AddScoped<IInventory,InventoryRepo>().AddScoped<AppointmentRepo>().AddHostedService<Worker>();;
+    AddScoped<IInventory,InventoryRepo>().
+    AddScoped<AppointmentRepo>()
+    .AddSingleton<PatientProfileService>()
+    .AddHostedService<Worker>();;
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
     {

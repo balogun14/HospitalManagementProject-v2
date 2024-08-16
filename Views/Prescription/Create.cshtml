@@ -27,12 +27,12 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Patient)
+                @Html.LabelFor(m => m.PatientId)
                 @Html.DropDownList("PatientId" ,new SelectList(ViewBag.Patients, "PatientId","FullName"), "Select Patient", new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Doctor)
+                @Html.LabelFor(m => m.DoctorId)
                 @Html.DropDownList("DoctorId", new SelectList(ViewBag.Doctors, "DoctorId", "FullName"), "Select Doctor", new { @class = "form-control" })
             </div>
 
