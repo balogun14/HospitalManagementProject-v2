@@ -5,217 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HospitalManagementProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HospitalManagementProject.styles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
-<style>
-    body {
-        background-color: rgba(0, 0, 255, 0.445);
-    }
 
-    .title {
-        text-align: right;
-        font-size: 30px;
-    }
-
-    .body {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .head{
-        background-color: black;
-        border-radius: 10px;
-        padding: 10px;
-        cursor: pointer;
-        user-select: none;
-    }
-    .sidebar {
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        background-color: white;
-        height: 100vh;
-        color: antiquewhite !important;
-        /* width: 250px; */
-        flex-basis: 16%;
-    }
-
-    .sidebar button {
-        background-color: rgb(190, 171, 171) !important;
-        padding: 15px;
-        border-radius: 40px;
-        margin-bottom: 10px;
-    }
-
-    .content{
-        flex-basis: 80%;
-        display: flex;
-        flex-flow: row wrap;
-        gap: 15px;
-    }
-    .content div{
-        background-color: aliceblue;
-        width: 350px;
-        height: 100px;
-        border-radius: 10px;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: start;
-        align-items: start;
-        padding: 10px 10px;
-        cursor: pointer;
-        user-select: none;
-
-    }
-    .content .main{
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: start;
-        align-items: start;
-        padding: 10px 10px;
-        cursor: pointer;
-
-    }
-    .content div:hover{
-        background-color: rgb(38, 153, 253);
-
-    }
-
-    .content div h4{
-        font-weight: 400;
-        font-size: 20px;
-    }
-    .content div span{
-        font-weight: 100;
-        font-size: 13px;
-    }
-</style>
 <body>
-    @* <header> *@
-    @*     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"> *@
-    @*         <div class="container-fluid"> *@
-    @*             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HospitalManagementProject</a> *@
-    @*             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
-    @*                     aria-expanded="false" aria-label="Toggle navigation"> *@
-    @*                 <span class="navbar-toggler-icon"></span> *@
-    @*             </button> *@
-    @*             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
-    @*                 <ul class="navbar-nav flex-grow-1"> *@
-    @*                     <li class="nav-item"> *@
-    @*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
-    @*                     </li> *@
-    @*                     <li class="nav-item"> *@
-    @*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
-    @*                     </li> *@
-    @*                 </ul> *@
-    @*             </div> *@
-    @*         </div> *@
-    @*     </nav> *@
-    @* </header> *@
-    @* <div class="container"> *@
-    @*     <main role="main" class="pb-3"> *@
-    @*         @RenderBody() *@
-    @*     </main> *@
-    @* </div> *@
     <partial name="_LoginPartial" />
 
     <div class="body">
-        <div class="sidebar">
-            <div class="flex-shrink-0 p-3">
-                <a asp-action="Index" class="d-flex  pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
-                    <span class="title">Dashboard</span>
-                </a>
-                <ul class="list-unstyled ps-0">
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                            EHR
-                        </button>
-                        <div class="collapse show" id="home-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li>
-                                    <a asp-controller="Doctor" asp-action="Index"
-                                       class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Doctors
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Patient" asp-action="Index"
-                                       class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Patients
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Prescription" asp-action="Index"
-                                       class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Prescriptions
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
-                            Appointments
-                        </button>
-                        <div class="collapse show" id="appointment-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li>
-                                    <a asp-controller="Appointment" asp-action="Index"
-                                       class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Appointments
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Appointment" asp-action="Create"
-                                       class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Create
-                                        Appointments
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#inventory-collapse" aria-expanded="false">
-                            Inventory (Incoming)
-                        </button>
-                        <div class="collapse show" id="inventory-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li>
-                                    <a
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Inventory
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                        Create
-                                        Item
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="border-top my-3"></li>
-                </ul>
-            </div>
-        </div>
-
         @RenderBody()
     </div>
-    <footer class="border-top footer text-muted">
+    <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-            &copy; 2024 - HospitalManagementProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span class="text-muted">© 2024 Hospital Management System. All rights reserved.</span>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,51 +1,43 @@
 @model HospitalManagementProject.DTO.AppointmentsDto.CreateAppointmentDto
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 
-@{
-    ViewData["Title"] = "Create Appointment";
-}
+<h2>Create Appointment</h2>
 
-<h1>Create Appointment</h1>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        </div>
 
-<h4>Appointment</h4>
-<h5>Enter Patient and Doctor Eight digit code</h5>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatientId" class="control-label">Patient</label>
-                <input asp-for="PatientId" class="form-control"/>
-                <span asp-validation-for="PatientId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorId" class="control-label">Doctor</label>
-                <input asp-for="DoctorId" class="form-control"/>
-                <span asp-validation-for="DoctorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control"/>
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AppointmentTime" class="control-label"></label>
-                <input asp-for="AppointmentTime" class="form-control"/>
-                <span asp-validation-for="AppointmentTime" class="text-danger"></span>
-            </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Notes)
+            @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(m => m.AppointmentTime)
+            @Html.TextBoxFor(m => m.AppointmentTime, new { @class = "form-control", @type = "datetime-local" })
+        </div>
 
-            <div class="form-group">
-                <button asp-action="Create" class="btn btn-outline-primary">Create Appointment</button>
-            </div>
-        </form>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PatientId)
+            @Html.DropDownList("PatientId" ,new SelectList(ViewBag.Patients, "PatientId","FullName"), "Select Patient", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.DoctorId)
+            @Html.DropDownList("DoctorId", new SelectList(ViewBag.Doctors, "DoctorId", "FullName"), "Select Doctor", new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        @if (ViewBag.Patients == null)
+        {
+            <p>Patients data is not available.</p>
+        }
+
+        }
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -1,37 +1,40 @@
 @model IEnumerable<HospitalManagementProject.DTO.PrescriptionDto.PrescriptionDto>
 
-@{
-    ViewData["Title"] = "Prescriptions";
-}
+<h2>Prescriptions</h2>
 
-<h1>Prescriptions</h1>
-
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Date Prescribed</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Patient.FirstName @item.Patient.LastName</td>
-            <td>@item.Doctor.FirstName @item.Doctor.LastName</td>
-            <td>@item.DateIssued.ToShortDateString()</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Symptoms</th>
+                <th>Diagnosis</th>
+                <th>Medications</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Date Issued</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var prescription in Model)
+            {
+            <tr>
+                <td>@prescription.Symptoms</td>
+                <td>@prescription.Diagnosis</td>
+                <td>@prescription.Medications</td>
+                <td>@prescription.Doctor.FirstName @prescription.Doctor.LastName</td>
+                <td>@prescription.Patient.FirstName @prescription.Patient.LastName</td>
+                <td>@prescription.DateIssued.ToString("d")</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = prescription.Id })" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="@Url.Action("Detail", new { id = prescription.Id })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Delete", new { id = prescription.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+        <a href="@Url.Action("Create")" class="btn btn-success">Create New Prescription</a>
+    </div>
+</div>

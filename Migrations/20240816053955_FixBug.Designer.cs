@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240628101802_EditAttributes")]
-    partial class EditAttributes
+    [Migration("20240816053955_FixBug")]
+    partial class FixBug
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +94,10 @@ namespace HospitalManagementProject.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -145,6 +149,10 @@ namespace HospitalManagementProject.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Symptoms")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Treatment")
                         .IsRequired()
                         .HasColumnType("longtext");
 

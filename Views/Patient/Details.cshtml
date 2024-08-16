@@ -1,26 +1,29 @@
 @model HospitalManagementProject.DTO.PatientsDto.PatientDto
 
-@{
-    ViewBag.Title = "Patient Details";
-    
-}
-<div class="main"></div>
-<h1>@Model.GivenName @Model.FamilyName</h1>
-<h2>@Model.Address</h2>
-<h2>            @Model.Dob.ToShortDateString()
-</h2>
-<h2>@Model.Email</h2>
-<h2>@Model.Sex</h2>
-<h2>@Model.MaritalStatus</h2>
-<h2>@Model.PhoneNumber</h2>
-<h3>Appointments </h3>
-@if (@Model.Appointments != null)
-{
-    foreach (var appointment in @Model.Appointments)
-    {
-        <h3>@appointment.Title</h3>
-        <h4>@appointment.AppointmentDate</h4>
-    }
-}
-<a asp-controller="Patient" asp-action="Delete"
-   asp-route-id="@Model.Id">Delete</a>
+<h2>Patient Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        @Model.GivenName @Model.FamilyName
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Date of Birth</dt>
+            <dd class="col-sm-9">@Model.Dob.ToString("d")</dd>
+
+            <dt class="col-sm-3">Gender</dt>
+            <dd class="col-sm-9">@Model.Sex</dd>
+
+            <dt class="col-sm-3">Phone Number</dt>
+            <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+        </dl>
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

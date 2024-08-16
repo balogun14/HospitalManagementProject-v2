@@ -1,39 +1,39 @@
 @model IEnumerable<HospitalManagementProject.DTO.AppointmentsDto.AppointmentDto>
+<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 
-@{
-    ViewData["Title"] = "Appointments";
-}
+<h2>Appointments</h2>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Notes</th>
+                <th>Appointment Time</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.Title</td>
+                    <td>@appointment.Notes</td>
+                    <td>@appointment.AppointmentTime.ToString("g")</td>
+                    <td>@appointment.Patient.FirstName @appointment.Patient.LastName</td>
+                    <td>@appointment.Doctor.FirstName @appointment.Doctor.LastName</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = appointment.Id })" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="@Url.Action("Detail", new { id = appointment.Id })" class="btn btn-info btn-sm">Details</a>
+                        <a href="@Url.Action("Delete", new { id = appointment.Id })" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
 
-<h1>Appointments</h1>
-
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>Patient ID</th>
-        <th>Patient</th>
-        <th>Appointment Time</th>
-        <th>Notes</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Patient.PatientId</td>
-            <td>@item.Patient.FirstName @item.Patient.LastName</td>
-            <td>@item.AppointmentTime.ToShortDateString()</td>
-            <td>@item.Notes</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+        <a href="@Url.Action("Create")" class="btn btn-success">Create New Appointment</a>
+    </div>
+</div>

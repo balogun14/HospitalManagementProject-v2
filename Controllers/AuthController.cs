@@ -68,9 +68,8 @@ namespace HospitalManagementProject.Controllers
 
                 if (!result.Succeeded)
                 {
-                    notyf.Error("An error occured while registering user!" );
                     var message =  string.Join(", ", result.Errors.Select(x => "Code " + x.Code + " Description" + x.Description));
-                    logger.LogCritical(message);
+                    notyf.Error(message);
                     return View();
                 }
 

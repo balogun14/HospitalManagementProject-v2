@@ -1,31 +1,38 @@
+@using HospitalManagementProject.Enums
 @model HospitalManagementProject.DTO.DoctorsDto.EditDoctorDto
 
-@{
-    ViewBag.Title = "Edit Doctor";
-}
-<div class="main">
-    <form method="post">
-    <div class="form-group">
-        <label asp-for="Firstname" class="form-label"> </label>
-        <input asp-for="Firstname" class="form-control" id="" placeholder="Balogun">
-        <span asp-validation-for="Firstname" class="text-danger"></span>
+<h2>Edit Doctor</h2>
+
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Firstname)
+            @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Firstname, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Speciality)
+            @Html.DropDownListFor(m => m.Speciality, Enum.GetValues(typeof(HospitalManagementProject.Enums.Specialization)).Cast<Specialization>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Specialization", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        }
     </div>
-    <div class="form-group">
-        <label asp-for="LastName" class="form-label"> </label>
-        <input asp-for="LastName" class="form-control" id="" placeholder="Awwal">
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber" class="form-label"> </label>
-        <input asp-for="PhoneNumber" class="form-control" id="" placeholder="51 queens street">
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-    <br/>
-    <div class="form-group">
-        <label asp-for="Speciality"></label>
-        <select asp-for="Speciality" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.Specialization>()"></select>
-        <span asp-validation-for="Speciality" class="text-danger"></span>
-    </div>
-    <button asp-action="Edit">Edit</button>
-</form>
 </div>

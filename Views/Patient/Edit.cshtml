@@ -1,60 +1,59 @@
+@using HospitalManagementProject.Enums
 @model HospitalManagementProject.DTO.PatientsDto.EditPatientDto
 
-@{
-    ViewBag.Title = "Edit Patient";
-}
+<h2>Edit Patient</h2>
 
-<form method="post">
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Id)
 
-    <div class="form-group">
-        <label asp-for="GivenName" class="form-label"> </label>
-        <input asp-for="GivenName" class="form-control" id="" placeholder="Balogun">
-        <span asp-validation-for="GivenName" class="text-danger"></span>
+            <div class="form-group">
+                @Html.LabelFor(m => m.GivenName)
+                @Html.TextBoxFor(m => m.GivenName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.GivenName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FamilyName)
+                @Html.TextBoxFor(m => m.FamilyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FamilyName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sex)
+                @Html.DropDownListFor(m => m.Sex, Enum.GetValues(typeof(HospitalManagementProject.Enums.Gender)).Cast<Gender>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Gender", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.BloodGroups)
+                @Html.DropDownListFor(m => m.BloodGroups, Enum.GetValues(typeof(HospitalManagementProject.Enums.BloodGroups)).Cast<BloodGroups>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Blood Group", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaritalStatus)
+                @Html.DropDownListFor(m => m.MaritalStatus, Enum.GetValues(typeof(HospitalManagementProject.Enums.MaritalStatus)).Cast<MaritalStatus>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Marital Status", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber)
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        }
     </div>
-    <div class="form-group">
-        <label asp-for="FamilyName" class="form-label"> </label>
-        <input asp-for="FamilyName" class="form-control" id="" placeholder="Awwal">
-        <span asp-validation-for="FamilyName" class="text-danger"></span>
-
-    </div>
-    <div class="form-group">
-        <label asp-for="Address" class="form-label"> </label>
-        <input asp-for="Address" class="form-control" id="" placeholder="51 queens street">
-        <span asp-validation-for="Address" class="text-danger"></span>
-
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="form-label"> </label>
-        <input asp-for="Email" class="form-control" id="">
-        <span asp-validation-for="Email" class="text-danger"></span>
-
-    </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber" class="form-label"> </label>
-        <input asp-for="PhoneNumber" class="form-control" id="">
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
-    </div>
-    <br/>
-    <div class="form-group">
-        <label asp-for="Sex" class="form-label"> </label>
-        <select asp-for="Sex" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.Gender>()"></select>
-        <span asp-validation-for="Sex" class="text-danger"></span>
-
-    </div>
-    <br/>
-    <div class="form-group">
-        <label asp-for="MaritalStatus" class="form-label"> </label>
-        <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.MaritalStatus>()"></select>
-        <span asp-validation-for="MaritalStatus" class="text-danger"></span>
-
-    </div>
-    <br/>
-    <div class="form-group">
-        <label asp-for="BloodGroups"></label>
-        <select asp-for="BloodGroups" asp-items="Html.GetEnumSelectList<HospitalManagementProject.Enums.BloodGroups>()"></select>
-        <span asp-validation-for="BloodGroups" class="text-danger"></span>
-
-    </div>
-    <button class="btn btn-primary" asp-action="Edit">Submit</button>
-</form>
+</div>

@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace HospitalManagementProject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FixBug : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -99,7 +99,8 @@ namespace HospitalManagementProject.Migrations
                     PhoneNumber = table.Column<string>(type: "longtext", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BloodGroups = table.Column<byte>(type: "tinyint unsigned", nullable: false),
-                    MaritalStatus = table.Column<int>(type: "int", nullable: false)
+                    MaritalStatus = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,6 +226,7 @@ namespace HospitalManagementProject.Migrations
                     AppointmentId = table.Column<Guid>(type: "char(36)", nullable: false),
                     PatientId = table.Column<Guid>(type: "char(36)", nullable: false),
                     DoctorId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Title = table.Column<string>(type: "longtext", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
                 },
@@ -255,6 +257,9 @@ namespace HospitalManagementProject.Migrations
                     DoctorId = table.Column<Guid>(type: "char(36)", nullable: false),
                     Medication = table.Column<string>(type: "longtext", nullable: false),
                     Dosage = table.Column<string>(type: "longtext", nullable: false),
+                    Diagnosis = table.Column<string>(type: "longtext", nullable: false),
+                    Symptoms = table.Column<string>(type: "longtext", nullable: false),
+                    Treatment = table.Column<string>(type: "longtext", nullable: false),
                     DateIssued = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
