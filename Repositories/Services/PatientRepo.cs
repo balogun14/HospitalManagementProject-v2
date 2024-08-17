@@ -82,7 +82,6 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
                 var profileUrl = _patientProfileService.GeneratePatientProfileUrl(patient.PatientId);
                 var qrCodeUrl = await _patientProfileService.GenerateAndSaveQRCodeAsync(profileUrl, patient.PatientId);
                 var emailBody = $"""
-                                 
                                                  <html>
                                                      <body>
                                                          <h1>Patient Profile Created</h1>

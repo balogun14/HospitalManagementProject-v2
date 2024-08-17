@@ -37,7 +37,7 @@ public class AppointmentController(IAppointment apppointmentService,INotyfServic
         {
             if (!ModelState.IsValid) return View(createEntity);
             var id = await apppointmentService.AddAsync(createEntity);
-            notifyService.Information("Appointment Created Successfully with id "+ id);
+            notifyService.Information("Appointment Created Successfully ");
             return RedirectToAction("Index");
         }
         // GET: AppointmentController/Edit/5

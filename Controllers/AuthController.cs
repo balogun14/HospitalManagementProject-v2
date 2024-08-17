@@ -28,7 +28,7 @@ namespace HospitalManagementProject.Controllers
                     if (result.Succeeded)
                     {
                         notyf.Success("Login successful");
-                        return RedirectToAction("Index", "home");
+                        return RedirectToAction("Index", "admin");
                     }
                 }
 
@@ -75,7 +75,7 @@ namespace HospitalManagementProject.Controllers
 
                 notyf.Success("Registration was successful");
                 await signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "home");
+                return RedirectToAction("Index", "admin");
             }
             return View(model);
         }
@@ -106,7 +106,7 @@ namespace HospitalManagementProject.Controllers
                 }
 
                 notyf.Success("User updated successfully!");
-                return RedirectToAction("Index", "home");
+                return RedirectToAction("Index", "admin");
             }
             return View(model);
         }
