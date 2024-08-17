@@ -1,12 +1,14 @@
+using System.Globalization;
 using HospitalManagementProject.Data;
 using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.Models.EHR;
 using HospitalManagementProject.Repositories.Contracts;
+using HospitalManagementProject.Worker_Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementProject.Repositories.Services;
 
-public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logger) : IPatient
+public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logger,PatientProfileService _patientProfileService) : IPatient
 {
     private readonly ILogger<PatientRepo> _logger = logger;
 
@@ -68,8 +70,35 @@ public class PatientRepo(ApplicationDbContext context,ILogger<PatientRepo> logge
             DateOfBirth = createEntity.Dob,
             Email = createEntity.Email
         };
+
         await context.Patients.AddAsync(patient);
         await context.SaveChangesAsync();
+
+        // Start the background task for QR code generation and email sending
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var profileUrl = _patientProfileService.GeneratePatientProfileUrl(patient.PatientId);
+                var qrCodeUrl = await _patientProfileService.GenerateAndSaveQRCodeAsync(profileUrl, patient.PatientId);
+                var emailBody = $"""
+                                                 <html>
+                                                     <body>
+                                                         <h1>Patient Profile Created</h1>
+                                                         <p>View your profile: <a href='{profileUrl}'>Click here</a></p>
+                                                         <p>Or download this QR code:</p><a href='{qrCodeUrl}'>Click here</a>                    
+                                                         </body>
+                                                 </html>
+                                 """;
+
+                await SendEmailService.SendMailAsync(patient.Email, emailBody, "Profile Created for Patient");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in background task: {ex.Message}");
+            }
+        });
+
         return patient.PatientId;
     }
 

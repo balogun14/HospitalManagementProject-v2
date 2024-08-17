@@ -51,8 +51,8 @@ public class PrescriptionRepo(ApplicationDbContext context):IPrescription
             Diagnosis= createEntity.Diagnosis,
             Medication =createEntity.Medications,
             Treatment=createEntity.Treatment,
-            DoctorId= createEntity.Doctor,
-            PatientId= createEntity.Patient,
+            DoctorId= createEntity.DoctorId,
+            PatientId= createEntity.PatientId,
             DateIssued = DateTime.Now
         };
         await context.Prescriptions.AddAsync(prescription);

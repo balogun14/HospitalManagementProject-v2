@@ -1,0 +1,575 @@
+
+@{
+Layout = null;
+}
+
+<head>
+	<!-- meta data -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<!--font-family-->
+	<link
+		href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+
+	<!-- title of site -->
+	<title>HealthLink</title>
+
+	<!-- For favicon png -->
+	<link rel="shortcut icon" type="image/icon" href="~/assets/logo/favicon.webp" />
+
+	<!--font-awesome.min.css-->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!--linear icon css-->
+	<link rel="stylesheet" href="assets/css/linearicons.css">
+
+	<!--flaticon.css-->
+	<link rel="stylesheet" href="assets/css/flaticon.css">
+
+	<!--animate.css-->
+	<link rel="stylesheet" href="assets/css/animate.css">
+
+	<!--owl.carousel.css-->
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+
+	<!--bootstrap.min.css-->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- bootsnav -->
+	<link rel="stylesheet" href="assets/css/bootsnav.css">
+
+	<!--style.css-->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--responsive.css-->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+	<!--welcome-hero start -->
+	<section id="home" class="welcome-hero">
+
+		<!-- top-area Start -->
+		<div class="top-area">
+			<div class="header-area">
+				<!-- Start Navigation -->
+				<nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"
+					data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+					<div class="container">
+						<!-- Start Header Navigation -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse"
+								data-target="#navbar-menu">
+								<i class="fa fa-bars"></i>
+							</button>
+							<a class="navbar-brand" href="">HealthLink<span></span></a>
+
+						</div><!--/.navbar-header-->
+						<!-- End Header Navigation -->
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+								<li class=" scroll active"><a href="#home">home</a></li>
+								<li class="scroll"><a href="#service">Appointments</a></li>
+								<li class="scroll"><a href="#featured-cars">Doctors</a></li>
+								<li class="scroll"><a href="#new-cars">Patients</a></li>
+								<li class="scroll"><a href="#brand">Prescriptions</a></li>
+							</ul><!--/.nav -->
+						</div><!-- /.navbar-collapse -->
+					</div><!--/.container-->
+				</nav><!--/nav-->
+				<!-- End Navigation -->
+			</div><!--/.header-area-->
+			<div class="clearfix"></div>
+
+		</div><!-- /.top-area-->
+		<!-- top-area End -->
+
+		<div class="container">
+			<div class="welcome-hero-txt">
+				<h2>Manage Your Health Records Seamlessly</h2>
+				<p>
+					Easily access, update, and share your medical history with trusted healthcare providers. Your
+					health, your control.
+				</p>
+				<button class="welcome-btn" ><a asp-controller="Auth" asp-action="Login">Login To Admin Panel</a></button>
+			</div>
+
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="model-search-content">
+						<div class="row">
+							<div class="container">
+								<h3 class="text-center">About HealthLink </h3>
+								<br>
+								<p class="mx-5 px-5 pt-2 text-center">
+									At HealthLink we are dedicated to revolutionizing the way you manage your health.
+									Our mission is to provide a seamless, secure, and accessible platform for managing
+									your health records. With a focus on user experience and data security, we strive to
+									make healthcare management simple and effective.
+								</p>
+								<br>
+
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="single-model-search text-center">
+								<button class="welcome-btn model-search-btn" onclick="window.location.href='#'">
+									Get Started
+								</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</section><!--/.welcome-hero-->
+	<!--welcome-hero end -->
+	<!--service start -->
+	<section id="service" class="service">
+		<div class="container">
+			<div class="service-content">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="single-service-item">
+							<div class="single-service-icon">
+								<i class="bi bi-alarm-fill h1"></i>
+							</div>
+							<h2><a href="#">Easily Manage <span> your</span> Appointments</a></h2>
+							<p>
+								Are you tired of Missing Appointments and Having to reschedule Everytime you forget?
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-service-item">
+							<div class="single-service-icon">
+								<i class="bi bi-database-check h1"></i>
+							</div>
+							<h2><a href="#">unlimited Data Storage</a></h2>
+							<p>
+								With HealthLink, you can store all your medical records in one place, ensuring you have
+								access to your health history whenever you need it.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="single-service-item">
+							<div class="single-service-icon">
+								<i class="bi bi-alexa h1"></i>
+							</div>
+							<h2><a href="#">24/7 support</a></h2>
+							<p>
+								Our team is here to help you with any questions or concerns you may have. We’re
+								dedicated to providing you with the best possible experience.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.container-->
+
+	</section><!--/.service-->
+	<!--service end-->
+
+	<!--new-cars start -->
+	<section id="new-cars" class="new-cars">
+		<div class="container">
+			<div class="section-header">
+				<p>checkout <span>the</span> latest </p>
+				<h2>Our Vision</h2>
+			</div><!--/.section-header-->
+			<div class="new-cars-content">
+				<div class="owl-carousel owl-theme" id="new-cars-carousel">
+					<div class="new-cars-item">
+						<div class="single-new-cars-item">
+							<div class="row">
+								<div class="col-md-7 col-sm-12">
+									<div class="new-cars-img">
+										<img src="assets/images/new-cars-model/fc1.jpg" alt="img" />
+									</div><!--/.new-cars-img-->
+								</div>
+								<div class="col-md-5 col-sm-12">
+									<div class="new-cars-txt">
+										<h2><a href="#">Your Health, Your Control</a></h2>
+										<p>
+											Take charge of your health like never before with HealthLink Pro. Seamlessly
+											manage your medical records, appointments, and prescriptions all in one
+											place. Say goodbye to the stress of paperwork and hello to a healthier, more
+											organized life.
+										</p>
+										<p class="new-cars-para2">
+											HealthLink empowers you to make informed decisions about your well-being,
+											giving you the tools you need to stay on top of your health journey.
+										</p>
+
+									</div><!--/.new-cars-txt-->
+								</div><!--/.col-->
+							</div><!--/.row-->
+						</div><!--/.single-new-cars-item-->
+					</div><!--/.new-cars-item-->
+					<div class="new-cars-item">
+						<div class="single-new-cars-item">
+							<div class="row">
+								<div class="col-md-7 col-sm-12">
+									<div class="new-cars-img">
+										<img src="assets/images/new-cars-model/health4.jpg" alt="img" />
+									</div><!--/.new-cars-img-->
+								</div>
+								<div class="col-md-5 col-sm-12">
+									<div class="new-cars-txt">
+										<h2><a href="#">Stay Connected, Stay Healthy</a></h2>
+										<p>
+											In today’s fast-paced world, staying connected to your health is more
+											important than ever. HealthLink Pro makes it easy to access your medical
+											information, connect with healthcare providers, and track your progress, all
+											from the palm of your hand.
+										</p>
+										<p class="new-cars-para2">
+											Don’t let distance keep you from staying healthy. With HealthLink Pro, your
+											health data travels with you, ensuring you’re always in the loop.
+										</p>
+
+									</div><!--/.new-cars-txt-->
+								</div><!--/.col-->
+							</div><!--/.row-->
+						</div><!--/.single-new-cars-item-->
+					</div><!--/.new-cars-item-->
+					<div class="new-cars-item">
+						<div class="single-new-cars-item">
+							<div class="row">
+								<div class="col-md-7 col-sm-12">
+									<div class="new-cars-img">
+										<img src="assets/images/new-cars-model/health3.jpg" alt="img" />
+									</div><!--/.new-cars-img-->
+								</div>
+								<div class="col-md-5 col-sm-12">
+									<div class="new-cars-txt">
+										<h2><a href="#">Simplifying Healthcare, One Record at a Time</a></h2>
+										<p>
+											Managing your health doesn’t have to be complicated. HealthLink Pro
+											simplifies the process by organizing all your medical records, lab results,
+											and doctor’s notes in one easy-to-use app. Focus on what matters most—your
+											health.
+										</p>
+										<p class="new-cars-para2">
+											Let HealthLink Pro handle the details, so you can focus on feeling your
+											best. Simplify your healthcare journey with just a few clicks.
+										</p>
+
+									</div><!--/.new-cars-txt-->
+								</div><!--/.col-->
+							</div><!--/.row-->
+						</div><!--/.single-new-cars-item-->
+					</div><!--/.new-cars-item-->
+				</div><!--/#new-cars-carousel-->
+			</div><!--/.new-cars-content-->
+		</div><!--/.container-->
+
+	</section><!--/.new-cars-->
+	<!--new-cars end -->
+
+	<!--featured-cars start -->
+	<section id="featured-cars" class="featured-cars">
+		<div class="container">
+			<div class="section-header">
+				<p>checkout <span>the</span> featured cars</p>
+				<h2>Meet Our Doctors</h2>
+			</div><!--/.section-header-->
+			<div class="featured-cars-content">
+				<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc1.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Aliyah Anita</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc2.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Victoria Snow</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc3.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Sofia Doe</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc4.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Anita O</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc5.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. John Doe</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc6.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Aliyr Der</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc7.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Ed Joe</p>
+					</div>
+					<div style="text-align: center;">
+						<img src="./assets/images/featured-cars/doc8.jpg" alt="Doctor 1"
+							style="width:400px; height:300px; border-radius: 10px; object-fit: cover; object-position: center;">
+						<p>Dr. Jim Foe</p>
+					</div>
+
+				</div>
+
+			</div>
+		</div><!--/.container-->
+
+	</section><!--/.featured-cars-->
+	<!--featured-cars end -->
+
+	<!-- clients-say strat -->
+	<section id="clients-say" class="clients-say">
+		<div class="container">
+			<div class="section-header">
+				<h2>what our clients say</h2>
+			</div><!--/.section-header-->
+			<div class="row">
+				<div class="owl-carousel testimonial-carousel">
+					<div class="col-sm-3 col-xs-12">
+						<div class="single-testimonial-box">
+							<div class="testimonial-description">
+								<div class="testimonial-info">
+									<div class="testimonial-img">
+										<img src="assets/images/clients/c1.jpg" alt="image of clients person" />
+									</div><!--/.testimonial-img-->
+								</div><!--/.testimonial-info-->
+								<div class="testimonial-comment">
+									<p>
+										HealthLink Pro has made managing my health records so much easier. I appreciate
+										how secure and accessible everything is, especially when visiting different
+										doctors.
+									</p>
+								</div><!--/.testimonial-comment-->
+								<div class="testimonial-person">
+									<h2><a href="#">Amina Yusuf</a></h2>
+									<h4>Lagos, Nigeria</h4>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-description-->
+						</div><!--/.single-testimonial-box-->
+					</div><!--/.col-->
+					<div class="col-sm-3 col-xs-12">
+						<div class="single-testimonial-box">
+							<div class="testimonial-description">
+								<div class="testimonial-info">
+									<div class="testimonial-img">
+										<img src="assets/images/clients/c2.jpg" alt="image of clients person" />
+									</div><!--/.testimonial-img-->
+								</div><!--/.testimonial-info-->
+								<div class="testimonial-comment">
+									<p>
+										This app is a must-have for anyone who wants to keep their medical history
+										organized. The interface is straightforward, and I feel confident knowing my
+										information is safe.
+									</p>
+								</div><!--/.testimonial-comment-->
+								<div class="testimonial-person">
+									<h2><a href="#">Ahmed Ali</a></h2>
+									<h4>Dubai, United Arab Emirates</h4>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-description-->
+						</div><!--/.single-testimonial-box-->
+					</div><!--/.col-->
+					<div class="col-sm-3 col-xs-12">
+						<div class="single-testimonial-box">
+							<div class="testimonial-description">
+								<div class="testimonial-info">
+									<div class="testimonial-img">
+										<img src="assets/images/clients/c3.jpg" alt="image of clients person"
+											style="object-fit: cover; object-position: center;" />
+									</div><!--/.testimonial-img-->
+								</div><!--/.testimonial-info-->
+								<div class="testimonial-comment">
+									<p>
+										HealthLink is exactly what I've been looking for. It's easy to use and perfect
+										for keeping my family's health records in one place. I highly recommend it!
+								</div><!--/.testimonial-comment-->
+								<div class="testimonial-person">
+									<h2><a href="#">Fatima Khan</a></h2>
+									<h4>Karachi, Pakistan</h4>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-description-->
+						</div><!--/.single-testimonial-box-->
+					</div><!--/.col-->
+				</div><!--/.testimonial-carousel-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+
+	</section><!--/.clients-say-->
+	<!-- clients-say end -->
+
+	<!--brand strat -->
+	<section id="brand" class="brand">
+		<div class="container">
+			<div class="brand-area">
+				<div class="owl-carousel owl-theme brand-item">
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br1.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br2.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br3.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br4.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br5.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+
+					<div class="item">
+						<a href="#">
+							<img src="assets/images/brand/br6.png" alt="brand-image" />
+						</a>
+					</div><!--/.item-->
+				</div><!--/.owl-carousel-->
+			</div><!--/.clients-area-->
+
+		</div><!--/.container-->
+
+	</section><!--/brand-->
+	<!--brand end -->
+
+	<!--blog start -->
+	<section id="blog" class="blog"></section><!--/.blog-->
+	<!--blog end -->
+
+	<!--contact start-->
+	<footer id="contact" class="contact">
+		<div class="container">
+			<div class="footer-top">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="single-footer-widget">
+							<div class="footer-logo">
+								<a href="index.html">HealthLink</a>
+							</div>
+							<p>
+								HealthLink is your trusted partner in managing your health records securely and
+								efficiently.
+							</p>
+							<div class="footer-contact">
+								<p>healthlink.com</p>
+								<p>+234563154554</p>
+								<p>Email: support@healthlink.com</p>
+								<p>Address: 123 Health St, Wellness City</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<div class="single-footer-widget">
+							<h2>about HealthLink</h2>
+							<ul>
+								<li><a href="#">about us</a></li>
+								<li><a href="#">career</a></li>
+								<li><a href="#">terms <span> of service</span></a></li>
+								<li><a href="#">privacy policy</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-offset-1 col-md-3 col-sm-6">
+						<div class="single-footer-widget">
+							<h2>news letter</h2>
+							<div class="footer-newsletter">
+								<p>
+									Subscribe to get Daily health update and informations
+								</p>
+							</div>
+							<div class="hm-foot-email">
+								<div class="foot-email-box">
+									<input type="text" class="form-control" placeholder="Add Email">
+								</div><!--/.foot-email-box-->
+								<div class="foot-email-subscribe">
+									<span><i class="fa fa-arrow-right"></i></span>
+								</div><!--/.foot-email-icon-->
+							</div><!--/.hm-foot-email-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							&copy; 2024 HealthLink. All rights reserved.
+						</p><!--/p-->
+					</div>
+				</div>
+			</div><!--/.footer-copyright-->
+		</div><!--/.container-->
+
+		<div id="scroll-Top">
+			<div class="return-to-top">
+				<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+					data-original-title="Back to Top" aria-hidden="true"></i>
+			</div>
+
+		</div><!--/.scroll-Top-->
+
+	</footer><!--/.contact-->
+	<!--contact end-->
+
+
+
+	<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+	<script src="assets/js/jquery.js"></script>
+
+	<!--modernizr.min.js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+	<!--bootstrap.min.js-->
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- bootsnav js -->
+	<script src="assets/js/bootsnav.js"></script>
+
+	<!--owl.carousel.js-->
+	<script src="assets/js/owl.carousel.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+	<!--Custom JS-->
+	<script src="assets/js/custom.js"></script>
+
+</body>

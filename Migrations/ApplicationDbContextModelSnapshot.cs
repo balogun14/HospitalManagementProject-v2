@@ -32,14 +32,16 @@ namespace HospitalManagementProject.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<Guid>("PatientId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("AppointmentId");
 
@@ -58,15 +60,18 @@ namespace HospitalManagementProject.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(13)
+                        .HasColumnType("varchar(13)");
 
                     b.Property<int>("Specialty")
                         .HasColumnType("int");
@@ -83,7 +88,8 @@ namespace HospitalManagementProject.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Address")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<byte>("BloodGroups")
                         .HasColumnType("tinyint unsigned");
@@ -93,25 +99,29 @@ namespace HospitalManagementProject.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("MaritalStatus")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(13)
+                        .HasColumnType("varchar(13)");
 
                     b.HasKey("PatientId");
 
@@ -129,29 +139,29 @@ namespace HospitalManagementProject.Migrations
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Dosage")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Medication")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<Guid>("PatientId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Symptoms")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Treatment")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.HasKey("PrescriptionId");
 

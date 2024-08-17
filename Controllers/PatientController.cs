@@ -32,7 +32,7 @@ namespace HospitalManagementProject.Controllers
         {
             if (!ModelState.IsValid) return View(createEntity);
             var id = await patientService.AddAsync(createEntity);
-            notifyService.Information("Patient Added Successfully with id " + id);
+            notifyService.Information("Patient Added Successfully ");
             return RedirectToAction("Index");
         }
         // GET: PatientController/Edit/5

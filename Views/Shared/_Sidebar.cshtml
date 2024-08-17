@@ -1,0 +1,102 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="~/dist/img/admin.png" class="img-circle" alt="User Image" />
+        </div>
+        <div class="pull-left info">
+            <p>Admin</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Patients</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Patient")" role="button">Manage Patients</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Patient")" role="button">Create Patients</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Patients</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Patient")" role="button">Manage Patients</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Patient")" role="button">Create Patients</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Home</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Admin")" role="button">Admin Home Page</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home")" role="button">Home Page</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Appointments</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Appointment")" role="button">Manage Appointments</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Appointment")" role="button">Create Appointment</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Prescriptions</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Prescription")" role="button">Manage Prescriptions</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Prescription")" role="button">Create Prescription</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Inventory</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Inventory")" role="button">Manage Inventory</a>
+                </li>
+                <li>
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Inventory")" role="button">Create Item</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<!-- /.sidebar -->

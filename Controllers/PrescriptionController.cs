@@ -36,7 +36,7 @@ public class PrescriptionController(IPrescription prescriptionService,INotyfServ
         {
             if (!ModelState.IsValid) return View(createEntity);
             var id = await prescriptionService.AddAsync(createEntity);
-            notifyService.Information("Prescription Created Successfully with id " + id);
+            notifyService.Information("Prescription Created Successfully" );
             return RedirectToAction("Index");
         }
         // GET: PatientController/Edit/5

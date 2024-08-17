@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace HospitalManagementProject.DTO.PrescriptionDto;
 
 public record class CreatePrescriptionDto(
@@ -5,6 +7,8 @@ public record class CreatePrescriptionDto(
     string Diagnosis,
     string Medications,
     string Treatment,
-    Guid Doctor,
-    Guid Patient
+    [property: DisplayName("Doctor")]
+    Guid DoctorId,
+    [property: DisplayName("Patient")]
+    Guid PatientId
     );

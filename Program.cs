@@ -19,7 +19,10 @@ builder.Services.AddScoped<IDoctor, DoctorRepo>().
     AddScoped<IPatient, PatientRepo>().
     AddScoped<IPrescription, PrescriptionRepo>().
     AddScoped<IAppointment,AppointmentRepo>().
-    AddScoped<IInventory,InventoryRepo>().AddScoped<AppointmentRepo>().AddHostedService<Worker>();;
+    AddScoped<IInventory,InventoryRepo>().
+    AddScoped<AppointmentRepo>()
+    .AddSingleton<PatientProfileService>()
+    .AddHostedService<Worker>();;
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
     {
@@ -70,37 +73,3 @@ app.MapControllerRoute(
 
 app.Run();
 
-// async Task CreateRoles(IServiceProvider serviceProvider)
-// {
-//     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-//     var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-//
-//     string[] roleNames = ["Administrator", "Patient"];
-//
-//     foreach (var roleName in roleNames)
-//     {
-//         var roleExist = await roleManager.RoleExistsAsync(roleName);
-//         if (!roleExist)
-//         {
-//             await roleManager.CreateAsync(new IdentityRole(roleName));
-//         }
-//     }
-//
-//     var adminUser = new User()
-//     {
-//         UserName = "admin@admin.com",
-//         Email = "admin@admin.com"
-//     };
-//
-//     const string adminPassword = "Admin@123";
-//     var user = await userManager.FindByEmailAsync(adminUser.Email);
-//
-//     if (user == null)
-//     {
-//         var createAdmin = await userManager.CreateAsync(adminUser, adminPassword);
-//         if (createAdmin.Succeeded)
-//         {
-//             await userManager.AddToRoleAsync(adminUser, "Administrator");
-//         }
-//     }
-// }

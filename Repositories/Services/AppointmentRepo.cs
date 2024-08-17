@@ -57,7 +57,19 @@ public class AppointmentRepo(ApplicationDbContext context):IAppointment
         };
         await context.Appointments.AddAsync(appointment);
         await context.SaveChangesAsync();
-        SendEmailService.SendMail(appointment.Patient.Email, "Appointment Created Successfully", $"You have an appointment with {appointment.Doctor.FirstName} {appointment.Doctor.LastName} on {appointment.AppointmentDate.ToString(CultureInfo.InvariantCulture)} days");
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await SendEmailService.SendMailAsync(appointment.Patient.Email, "Appointment Created Successfully",
+                    $"You have an appointment with Dr. {appointment.Doctor.FirstName} {appointment.Doctor.LastName} on {appointment.AppointmentDate.ToString(CultureInfo.InvariantCulture)} days");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error in background task: {ex.Message}");
+            }
+        });
         return appointment.AppointmentId;
     }
 

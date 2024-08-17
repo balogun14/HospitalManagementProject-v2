@@ -1,0 +1,77 @@
+@model HospitalManagementProject.DTO.PatientsDto.PatientDto
+@{
+Layout = "~/Views/Shared/_LayoutWithoutNavbar.cshtml";
+}
+<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<h2 class="text-center mb-4">Patient Profile</h2>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h3 class="card-title">@Model.GivenName @Model.FamilyName</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4 font-weight-bold">Date of Birth</dt>
+            <dd class="col-sm-8">@Model.Dob.ToString("MMMM d, yyyy")</dd>
+
+            <dt class="col-sm-4 font-weight-bold">Gender</dt>
+            <dd class="col-sm-8">@Model.Sex</dd>
+
+            <dt class="col-sm-4 font-weight-bold">Phone Number</dt>
+            <dd class="col-sm-8">@Model.PhoneNumber</dd>
+
+            <dt class="col-sm-4 font-weight-bold">Email</dt>
+            <dd class="col-sm-8">
+                <a href="mailto:@Model.Email">@Model.Email</a>
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">Address</dt>
+            <dd class="col-sm-8">@Model.Address</dd>
+            <dt class="col-sm-4 font-weight-bold">Blood Groups</dt>
+            <dd class="col-sm-8">@Model.BloodGroups</dd>
+            <dt class="col-sm-4 font-weight-bold">Marital Status</dt>
+            <dd class="col-sm-8">@Model.MaritalStatus</dd>
+        </dl>
+    </div>
+</div>
+
+<style>
+    h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #343a40;
+    }
+
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 20px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 30px;
+        background-color: #f8f9fa;
+    }
+
+    dt {
+        font-size: 1.1rem;
+    }
+
+    dd {
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -1,35 +1,30 @@
 using QRCoder;
 using System.Drawing;
-using System.Drawing.Imaging;
 
-public class PatientProfileService
+public class PatientProfileService(IConfiguration configuration, IWebHostEnvironment environment)
 {
-    private readonly IConfiguration _configuration;
-
-    public PatientProfileService(IConfiguration configuration)
+    public string GeneratePatientProfileUrl(Guid patientId)
     {
-        _configuration = configuration;
+        var baseUrl = configuration["BaseUrl"];
+        return $"{baseUrl}/PatientProfile/Profile/{patientId}";
     }
 
-    public string GeneratePatientProfileUrl(int patientId)
-    {
-        var baseUrl = _configuration["BaseUrl"];
-        return $"{baseUrl}/PatientDetails/{patientId}";
-    }
-
-    public string GenerateQRCodeAsBase64(string url)
+    public async Task<string> GenerateAndSaveQRCodeAsync(string url, Guid patientId)
     {
         using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-        using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q))
-        using (QRCode qrCode = new QRCode(qrCodeData))
         {
-            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
-            using (MemoryStream ms = new MemoryStream())
-            {
-                qrCodeImage.Save(ms, ImageFormat.Png);
-                byte[] byteImage = ms.ToArray();
-                return Convert.ToBase64String(byteImage);
-            }
+            var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new BitmapByteQRCode(qrCodeData);
+            byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(20);
+
+            string fileName = $"qrcode_{patientId}.png";
+            string filePath = Path.Combine(environment.WebRootPath, "qrcodes", fileName);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? string.Empty);
+
+            await File.WriteAllBytesAsync(filePath, qrCodeAsBitmapByteArr);
+
+            return $"{configuration["BaseUrl"]}/qrcodes/{fileName}";
         }
     }
 }
