@@ -15,5 +15,6 @@ public class Doctor
     public Specialization Specialty { get; set; }
     [StringLength(13)]
     public string PhoneNumber { get; set; }
+    
     public ICollection<Appointment>? Appointments { get; set; }
 }

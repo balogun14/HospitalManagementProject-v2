@@ -1,36 +1,42 @@
 @using HospitalManagementProject.Enums
 @model HospitalManagementProject.DTO.DoctorsDto.CreateDoctorDto
 
-<h2>Create Doctor</h2>
+@{
+    Layout = "_Layout";
+}
 
-<div class="card">
-    <div class="card-body">
-        @using (Html.BeginForm())
-        {
-        <div class="form-group">
-            @Html.LabelFor(m => m.Firstname)
-            @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Firstname, "", new { @class = "text-danger" })
+<div>
+    <h2>Create Doctor</h2>
+
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Firstname)
+                    @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Firstname, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Speciality)
+                    @Html.DropDownListFor(m => m.Speciality, Enum.GetValues(typeof(HospitalManagementProject.Enums.Specialization)).Cast<Specialization>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Specialization", new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            }
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.LastName)
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Speciality)
-            @Html.DropDownListFor(m => m.Speciality, Enum.GetValues(typeof(HospitalManagementProject.Enums.Specialization)).Cast<Specialization>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Select Specialization", new { @class = "form-control" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.PhoneNumber)
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
-        </div>
-
-        <button type="submit" class="btn btn-primary">Create</button>
-        }
     </div>
 </div>
